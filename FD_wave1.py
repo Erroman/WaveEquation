@@ -7,13 +7,13 @@ from matplotlib import cm
 class WaveEquationFD:
     
     def __init__(self, N, D, Mx, My):
-        self.N = N
-        self.D = D
-        self.Mx = Mx
-        self.My = My
-        self.tend = 6
+        self.N = N    #200
+        self.D = D    #0.25
+        self.Mx = Mx  #50  Количество точек, в которых задаются
+        self.My = My  #50
+        self.tend = 6     # Время конца процесса
         self.xmin = 0
-        self.xmax = 2
+        self.xmax = 2 
         self.ymin = 0
         self.ymax = 2
         self.initialization()
@@ -21,14 +21,14 @@ class WaveEquationFD:
         
         
     def initialization(self):
-        self.dx = (self.xmax - self.xmin)/self.Mx
-        self.dy = (self.ymax - self.ymin)/self.My
+        self.dx = (self.xmax - self.xmin)/self.Mx  # величина интервала изменения переменной x
+        self.dy =  (self.ymax - self.ymin)/self.My  # величина интервала изменения переменной y
         
-        self.x = np.arange(self.xmin, self.xmax+self.dx, self.dx)
-        self.y = np.arange(self.ymin, self.ymax+self.dy, self.dy)
+        self.x = np.arange(self.xmin, self.xmax+self.dx, self.dx) # диапазон значений переменной x
+        self.y = np.arange(self.ymin, self.ymax+self.dy, self.dy) # диапазон значений переменной y
         
         #----- Initial condition -----#
-        self.u0 = lambda r, s: 0.1*np.sin(np.pi*r)*np.sin(np.pi*s/2)
+        self.u0 = lambda r, s: 0.1*np.sin(np.pi*r)*np.sin(np.pi*s/2) 
         
         #----- Initial velocity -----#
         self.v0 = lambda a, b: 0
