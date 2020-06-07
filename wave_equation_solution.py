@@ -27,12 +27,5 @@ for i in range(2,nt):        # complete this part. For loop for  time (rows)
     for j in range(1,nx-1):  # complete this part. For loop for space (columns)
         # use eq. 9 to complete this part
         u[i,j]=2*u[i-1,j]-u[i-2,j]+r*(u[i-1,j+1]-2*u[i-1,j]+u[i-1,j-1])
-fig = plt.figure()        
-ax = fig.add_subplot(111)	
-x = np.arange(0, 1+dx, dx)
-for i in range(0,nt-1):	 #nt-1
-    plotHandle = plt.plot(x,u[i,:])
-    plt.yticks([-5,-4,-3,-2,-1,0,1,2,3,4,5])
-    plt.pause(0.008)
-    plt.clf()
+plt.plot(u[:])
 plt.show()
