@@ -7,10 +7,10 @@ from matplotlib import cm
 class WaveEquationFD:
     
     def __init__(self, N, D, Mx, My):
-        self.N = N    #200
-        self.D = D    #0.25
-        self.Mx = Mx  #50  Количество точек, в которых задаются
-        self.My = My  #50
+        self.N = N    #200  
+        self.D = D    #0.25 коэффициент в уравнении
+        self.Mx = Mx  #50  Количество проекций точек на ось х, в которых задаются значения функции (z-координата на графике)
+        self.My = My  #50  Количество проекций точек на ось y, в которых задаются значения функции 
         self.tend = 6     # Время конца процесса
         self.xmin = 0
         self.xmax = 2 
@@ -24,8 +24,8 @@ class WaveEquationFD:
         self.dx = (self.xmax - self.xmin)/self.Mx  # величина интервала изменения переменной x
         self.dy =  (self.ymax - self.ymin)/self.My  # величина интервала изменения переменной y
         
-        self.x = np.arange(self.xmin, self.xmax+self.dx, self.dx) # диапазон значений переменной x
-        self.y = np.arange(self.ymin, self.ymax+self.dy, self.dy) # диапазон значений переменной y
+        self.x = np.arange(self.xmin, self.xmax+self.dx, self.dx) # набор значений переменной x
+        self.y = np.arange(self.ymin, self.ymax+self.dy, self.dy) # набор значений переменной y
         
         #----- Initial condition -----#
         self.u0 = lambda r, s: 0.1*np.sin(np.pi*r)*np.sin(np.pi*s/2) 
@@ -59,8 +59,8 @@ class WaveEquationFD:
         #----- Fills initial condition and initial velocity -----#
         for j in range(1, self.Mx):
             for i in range(1, self.My):
-                self.u[i,j] = self.u0(self.x[i], self.y[j])
-                self.ut[i,j] = self.v0(self.x[i], self.y[j])
+                self.u[i,j] = self.u0(self.x[i], self.y[j])  #значения функции в начальный момент времени
+                self.ut[i,j] = self.v0(self.x[i], self.y[j]) #значения производной функции в начальный момент времени
         
     
     def solve_and_animate(self):
